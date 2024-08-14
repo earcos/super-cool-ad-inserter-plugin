@@ -206,6 +206,13 @@ function scaip_maybe_insert_shortcode( $content = '' ) {
 	if ( has_shortcode( $content, 'ad' ) || has_shortcode( $content, 'scaip' ) ) {
 		return $content;
 	}
+	
+	$post_date = strtotime( the_date( 'Y-m-d', '', '', false ) );
+	$cutoff_date = strtotime( '2015-01-01' );
+if ( $post_date < $cutoff_date ) {
+			return $content;
+	}
+
 
 	/*
 	 * Filter to determine whether to apply the shortcode to the given post content
